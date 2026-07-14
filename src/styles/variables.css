@@ -1,0 +1,14 @@
+:root {
+  --primary: #0a192f;
+  --on-primary: #ffffff;
+  --success: #10b981;
+  --surface: #f7f9fb;
+  --surface-container: #ffffff;
+  --surface-container-low: #f2f4f6;
+  --surface-container-high: #eef1f4;
+  --on-surface: #1a1c1e;
+  --on-surface-variant: #44474e;
+  --outline: #74777f;
+  --outline-variant: #c4c6cf;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}

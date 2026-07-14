@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+:root {
+	/* Brand Colors */
+	--primary: #0a192f;
+	--on-primary: #ffffff;
+
+	/* Success & Growth */
+	--success: #10b981;
+
+	/* Surfaces & Backgrounds */
+	--surface: #f7f9fb;
+	--surface-container: #ffffff;
+	--surface-container-low: #f2f4f6;
+	--surface-container-high: #eef1f4;
+
+	/* Typography Colors */
+	--on-surface: #1a1c1e;
+	--on-surface-variant: #44474e;
+
+	/* Borders & Outlines */
+	--outline: #74777f;
+	--outline-variant: #c4c6cf;
+
+	/* Typography */
+	--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+}
+
+
+
+
+html {
+	min-height: 100%;
+	background: var(--surface);
+	color: var(--on-surface);
+	font-family: var(--font-sans);
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	background: var(--surface);
+	color: var(--on-surface);
+	font-family: var(--font-sans);
+	font-weight: var(--font-weight-regular);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+	background: color-mix(in srgb, var(--primary) 16%, transparent);
+	color: var(--on-surface);
+}
+
+#root {
+	min-height: 100vh;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button {
+	font-family: inherit;
+	font-weight: var(--font-weight-medium);
+}
+
+input,
+select,
+textarea {
+	font: inherit;
+}
