@@ -26,7 +26,7 @@ export function DashboardPage() {
       actions={
         <>
           <Button type="button">Export snapshot</Button>
-          <Link className="inline-flex items-center justify-center rounded-md border border-outline-variant px-4 py-3 text-sm font-bold text-on-surface transition-all duration-150 hover:-translate-y-px hover:bg-surface-container-low" to="/reports">
+          <Link className="inline-flex items-center justify-center rounded-md border border-outline-variant px-4 py-3 text-sm font-bold text-on-surface transition-all duration-150 hover:-translate-y-px hover:bg-surface-container-low" to="/user/reports">
             View reports
           </Link>
         </>

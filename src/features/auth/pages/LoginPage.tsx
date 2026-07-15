@@ -1,36 +1,52 @@
 import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { AuthCard } from '../components/AuthCard'
-import { useAuth } from '@/hooks/useAuth'
-import { useState } from 'react'
+import { isEmail } from '@/lib/validators'
+import { useForm } from 'react-hook-form'
+import { useLogin } from '../hooks/useLogin'
+import { getDashboardPath } from '@/lib/roles'
+
+interface LoginFormValues {
+  email: string
+  password: string
+}
 
 export function LoginPage() {
   const navigate = useNavigate()
-  const { login } = useAuth()
-  const [email, setEmail] = useState('advisor@smartfinance.com')
-  const [password, setPassword] = useState('smart-finance')
+  const { login } = useLogin()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormValues>({})
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    await login({ email, password })
-    navigate('/')
+  const onSubmit = async (values: LoginFormValues) => {
+    try {
+      const session = await login(values)
+      navigate(getDashboardPath(session.user.role))
+    } catch (error) {
+      console.error('Login error:', error)
+    }
   }
 
   return (
     <AuthCard title="Welcome back" description="Please enter your details to access your account.">
-      <form className="grid gap-4" onSubmit={handleSubmit}>
-        <label className="grid gap-2  text-xs font-medium text-on-surface-variant ">
+      <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <label className="grid gap-2  text-[0.95rem] font-medium text-on-surface-variant ">
           <div className='tracking-widest uppercase'>
 
           Email 
           </div>
           <input
             className="w-full rounded-3xl border border-[#d5d8df] bg-white px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-[#9aa1af] focus:border-[#0b1c4d]"
+            {...register('email', {
+              required: 'Email is required',
+              validate: (value) => isEmail(value) || 'Enter a valid email address',
+            })}
             type="email"
             placeholder="name@company.com"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
           />
+          {errors.email ? <span className="text-xs text-red-600">{errors.email.message}</span> : null}
         </label>
         <label className="grid gap-2 text-xs font-medium text-on-surface-variant">
           <div className='tracking-widest uppercase'>
@@ -38,11 +54,13 @@ export function LoginPage() {
           </div>
           <input
             className="w-full rounded-3xl border border-[#d5d8df] bg-white px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-[#9aa1af] focus:border-[#0b1c4d]"
+            {...register('password', {
+              required: 'Password is required',
+            })}
             type="password"
             placeholder="••••••••"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
           />
+          {errors.password ? <span className="text-xs text-red-600">{errors.password.message}</span> : null}
         </label>
 
         
@@ -60,7 +78,7 @@ export function LoginPage() {
         <div className="flex w-full justify-center ">
 
 
-        <Button className="w-[10rem] bg-black py-3 text-[0.76rem] font-bold uppercase tracking-[0.06em] text-white shadow-none hover:bg-neutral-900" type="submit">
+        <Button className="w-40 w-[10rem] bg-black py-3 text-[0.76rem] font-bold uppercase tracking-[0.06em] text-white shadow-none hover:bg-neutral-900" type="submit" disabled={isSubmitting}>
           Login
         </Button>
         </div>

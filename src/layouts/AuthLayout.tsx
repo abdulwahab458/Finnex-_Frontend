@@ -36,7 +36,7 @@ export function AuthLayout() {
           </div>
         </aside>
 
-        <section className="flex h-full min-h-0 items-center justify-center bg-[#f7f8fb] px-4 py-4 sm:px-6 sm:py-6 lg:px-10 lg:py-10">
+        <section className="flex  h-full min-h-0 items-center justify-center bg-[#f7f8fb] px-4 py-4 sm:px-6 sm:py-6 lg:px-10 lg:py-10">
           <div className="flex w-full max-w-11/12 flex-col gap-8">
             <div className="grid grid-cols-2 gap-0 border-b border-outline-variant/70 text-[1.25rem] font-semibold text-on-surface-variant transition-all ">
               <NavLink

@@ -1,5 +1,5 @@
 import { clearSession, getAccessToken, getStoredUser, setSession } from '@/services/tokenService'
-import type { AuthSession } from '@/types/api'
+import type { AuthSession } from '@/features/auth/types/auth.types'
 
 export const authStore = {
   get isAuthenticated() {
@@ -10,4 +10,9 @@ export const authStore = {
   },
   setSession,
   clearSession,
-} satisfies Pick<AuthSession, never>
+} satisfies {
+  isAuthenticated: boolean
+  user: AuthSession['user'] | null
+  setSession: (session: AuthSession) => void
+  clearSession: () => void
+}
