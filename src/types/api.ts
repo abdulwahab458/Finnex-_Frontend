@@ -4,18 +4,6 @@ export interface ApiResponse<T> {
   status?: number
 }
 
-export interface UserProfile {
-  id: string
-  email: string
-  displayName: string
-  role: 'client' | 'advisor' | 'admin'
-}
-
-export interface AuthSession {
-  accessToken: string
-  user: UserProfile
-}
-
 export interface LoginCredentials {
   email: string
   password: string

@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.js";
 
 :root {
 	/* Brand Colors */
@@ -10,7 +11,7 @@
 
 	/* Surfaces & Backgrounds */
 	--surface: #f7f9fb;
-	--surface-container: #ffffff;
+	--surface-container: #d6e0f1;
 	--surface-container-low: #f2f4f6;
 	--surface-container-high: #eef1f4;
 

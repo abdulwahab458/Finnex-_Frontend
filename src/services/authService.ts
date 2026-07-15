@@ -1,33 +1,41 @@
-import type { AuthSession, LoginCredentials, RegisterPayload } from '@/types/api'
+import type { AuthSession } from '@/features/auth/types/auth.types'
+import type { LoginCredentials, RegisterPayload } from '@/types/api'
 import { clearSession, setSession } from './tokenService'
 
 const sleep = async (milliseconds: number) => {
   await new Promise((resolve) => window.setTimeout(resolve, milliseconds))
 }
 
-const createSession = (email: string, displayName: string): AuthSession => ({
+const createSession = (email: string, firstName: string, lastName: string, role: AuthSession['user']['role'] = 'user'): AuthSession => ({
   accessToken: `demo-${btoa(email)}`,
+  refreshToken: `demo-refresh-${btoa(email)}`,
+  tokenType: 'Bearer',
+  expiresIn: 3600,
   user: {
     id: crypto.randomUUID(),
     email,
-    displayName,
-    role: 'client',
+    firstName,
+    lastName,
+    role,
+    permissions: role === 'admin' ? ['users:read', 'roles:read', 'audit:read'] : [],
+    avatarUrl: null,
+    lastLoginAt: new Date().toISOString(),
+    mfaEnabled: false,
   },
 })
 
 export async function login(credentials: LoginCredentials) {
   await sleep(250)
-  const session = createSession(
-    credentials.email,
-    credentials.email.split('@')[0].replace(/[._-]/g, ' '),
-  )
+  const [firstName = 'Demo', lastName = 'User'] = credentials.email.split('@')[0].replace(/[._-]/g, ' ').split(' ')
+  const session = createSession(credentials.email, firstName, lastName)
   setSession(session)
   return session
 }
 
 export async function register(payload: RegisterPayload) {
   await sleep(300)
-  const session = createSession(payload.email, payload.fullName.trim() || 'Smart Finance User')
+  const [firstName = 'Smart', lastName = 'User'] = payload.fullName.trim().split(' ')
+  const session = createSession(payload.email, firstName, lastName)
   setSession(session)
   return session
 }

@@ -1,14 +1,15 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { AuthLayout } from '@/layouts/AuthLayout'
-import { DashboardLayout } from '@/layouts/DashboardLayout'
+import { BaseLayout } from '@/layouts/BaseLayout'
 import { EmptyLayout } from '@/layouts/EmptyLayout'
 import { GuestRoute } from './GuestRoute'
 import { ProtectedRoute } from './ProtectedRoute'
-import { DashboardPage } from '@/features/dashboard/pages/DashboardPage'
+import { RoleDashboardRedirect } from './RoleDashboardRedirect'
 import { LoginPage } from '@/features/auth/pages/LoginPage'
 import { RegisterPage } from '@/features/auth/pages/RegisterPage'
 import { NotFound } from '@/pages/NotFound'
 import { Unauthorized } from '@/pages/Unauthorized'
+import { getRegistryRoutes } from '@/registry/routes'
 
 export function AppRoutes() {
   return (
@@ -21,9 +22,9 @@ export function AppRoutes() {
       </Route>
 
       <Route element={<ProtectedRoute />}>
-        <Route element={<DashboardLayout />}>
-          <Route path="/" element={<DashboardPage />} />
-          <Route path="/dashboard" element={<Navigate replace to="/" />} />
+        <Route element={<BaseLayout />}>
+          <Route path="/" element={<RoleDashboardRedirect />} />
+          {getRegistryRoutes()}
         </Route>
       </Route>
 

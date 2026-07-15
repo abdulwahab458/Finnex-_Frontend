@@ -1,19 +1,19 @@
-import axios from 'axios'
-import { getAccessToken } from '@/services/tokenService'
+import axios from "axios";
+import { getAccessToken } from "@/services/tokenService";
 
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ?? '/api',
+export const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-})
+});
 
-api.interceptors.request.use((config) => {
-  const accessToken = getAccessToken()
+apiClient.interceptors.request.use((config) => {
+  const accessToken = getAccessToken();
+
   if (accessToken) {
-    config.headers.Authorization = `Bearer ${accessToken}`
+    config.headers.Authorization = `Bearer ${accessToken}`;
   }
-  return config
-})
 
-export { api }
+  return config;
+});

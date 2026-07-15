@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
+import { getUserDisplayName } from '@/features/auth/types/auth.types'
 import { login as loginRequest, logout as logoutRequest, register as registerRequest } from '@/services/authService'
 import { getAccessToken, getStoredUser } from '@/services/tokenService'
-import type { LoginCredentials, RegisterPayload, UserProfile } from '@/types/api'
+import type { LoginCredentials, RegisterPayload } from '@/types/api'
+import type { User } from '@/features/auth/types/auth.types'
 
 interface AuthState {
   isAuthenticated: boolean
-  user: UserProfile | null
+  user: User | null
 }
 
 function readAuthState(): AuthState {
@@ -56,6 +58,7 @@ export function useAuth() {
 
   return {
     ...state,
+    displayName: getUserDisplayName(state.user),
     ...actions,
   }
 }

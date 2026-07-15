@@ -3,7 +3,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { APP_NAME } from '@/lib/constants'
 
 export function Navbar() {
-  const { user, logout } = useAuth()
+  const { user, displayName, logout } = useAuth()
 
   return (
     <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -15,7 +15,7 @@ export function Navbar() {
       </div>
       <div className="flex flex-wrap items-center gap-3">
         <div className="rounded-md border border-outline-variant bg-surface-container px-4 py-3 text-sm font-medium text-on-surface-variant shadow-soft">
-          {user ? `Signed in as ${user.displayName}` : 'Demo session active'}
+          {user ? `Signed in as ${displayName}` : 'Demo session active'}
         </div>
         <Button variant="ghost" type="button" onClick={() => void logout()}>
           Sign out
