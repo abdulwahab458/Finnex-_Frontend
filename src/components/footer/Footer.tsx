@@ -1,6 +1,6 @@
 export function Footer() {
   return (
-    <footer className="shrink-0 border-t border-outline-variant bg-surface-container text-on-surface" aria-label="Site footer">
+    <footer className="shrink-0 border-t border-outline bg-surface text-on-surface" aria-label="Site footer">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-4 px-4 py-4 text-[12px] font-medium tracking-[0.04em] md:flex-row md:items-center md:justify-between md:px-6">
         <div className="shrink-0 whitespace-nowrap text-[13px] font-bold text-primary">Modern Trust</div>
 
