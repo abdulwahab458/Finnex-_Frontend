@@ -1,6 +1,8 @@
 import './App.css'
 import { AppRoutes } from '@/routes/AppRoutes'
 import { useLocation } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   const { pathname } = useLocation()
@@ -11,7 +13,13 @@ function App() {
       <main className={isAuthRoute ? 'flex-1 min-h-0 overflow-hidden' : 'flex-1 min-h-0'}>
         <AppRoutes />
       </main>
-      
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        theme="light"
+        newestOnTop
+        closeOnClick
+      />
     </div>
   )
 }

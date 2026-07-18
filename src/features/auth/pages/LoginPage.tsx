@@ -38,7 +38,7 @@ export function LoginPage() {
           Email 
           </div>
           <input
-            className="w-full rounded-3xl border border-[#d5d8df] bg-white px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-[#9aa1af] focus:border-[#0b1c4d]"
+            className="w-full rounded-4xl border border-[#d5d8df] bg-white px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-[#9aa1af] focus:border-[#0b1c4d]"
             {...register('email', {
               required: 'Email is required',
               validate: (value) => isEmail(value) || 'Enter a valid email address',
@@ -53,7 +53,7 @@ export function LoginPage() {
           Password
           </div>
           <input
-            className="w-full rounded-3xl border border-[#d5d8df] bg-white px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-[#9aa1af] focus:border-[#0b1c4d]"
+            className="w-full rounded-4xl border border-[#d5d8df] bg-white px-3 py-2.5 text-sm text-on-surface outline-none transition-colors placeholder:text-[#9aa1af] focus:border-[#0b1c4d]"
             {...register('password', {
               required: 'Password is required',
             })}

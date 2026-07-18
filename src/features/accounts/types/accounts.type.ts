@@ -6,6 +6,8 @@ export const AccountType = {
   MORTGAGE: "MORTGAGE",
 } as const;
 
+export type CurrencyCode = "KWD" | "USD" | "EUR" | "GBP" | "SAR" | "AED";
+
 export type AccountType =
   (typeof AccountType)[keyof typeof AccountType];
 
@@ -22,3 +24,17 @@ export interface Account {
 }
 
 export type AccountsResponse = Account[];
+
+export interface CreateAccountPayload {
+  accountName: string;
+  accountNumber: string;
+  accountType: AccountType;
+  currency: CurrencyCode;
+  initialBalance: number;
+}
+
+export interface UpdateAccountPayload {
+    id: string;
+    accountName: string;
+}
+
