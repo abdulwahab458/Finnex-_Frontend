@@ -45,6 +45,9 @@ export function AccountsPage() {
   const { updateAccount, updatePending } = useUpdateAccount();
   const { deactivateAccount, deactivatePending } = useDeactivateAccount();
 
+  const [page, setPage] = useState(1);
+  const totalPages = 12;
+
   const [open, setOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -124,12 +127,18 @@ export function AccountsPage() {
         }}
       >
 
-        <Table.Root>
+        <Table.Root
+          pagination={{
+            currentPage: page,
+            totalPages,
+            onPageChange: setPage,
+          }}
+        >
           <Table.Header>
             <Table.HeaderCell>Account Name</Table.HeaderCell>
             <Table.HeaderCell>Account Number</Table.HeaderCell>
             <Table.HeaderCell>Status</Table.HeaderCell>
-            <Table.HeaderCell align="right">Balance</Table.HeaderCell>
+            <Table.HeaderCell align="left">Balance</Table.HeaderCell>
             <Table.HeaderCell align="center">Actions</Table.HeaderCell>
           </Table.Header>
 
@@ -166,7 +175,7 @@ export function AccountsPage() {
                     </span>
                   </Table.Cell>
 
-                  <Table.Cell align="right">
+                  <Table.Cell align="left">
                     <span className="font-bold text-on-surface">${account.balance}</span>
                   </Table.Cell>
 
@@ -206,7 +215,7 @@ export function AccountsPage() {
       </PageShell>
       {
         open && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 slide-down">
             <Modal
               open={open}
               onClose={() => setOpen(false)}

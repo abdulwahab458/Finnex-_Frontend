@@ -2,6 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { loginApi as login } from "../api/authApi";
 import type { AxiosError } from "axios";
 import { setSession } from "@/services/tokenService";
+import { toast } from "react-toastify";
 
 
 
@@ -9,11 +10,12 @@ export const useLogin = () => {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: (session)=>{
-      console.log(session)
+      toast.success("Login Successful");
       setSession(session)
     },
     onError:(err:AxiosError<any>)=>{
-      console.log(err.response?.data)
+      toast.error("Login failed, "+err.response?.data.message)
+      console.log(err.response?.data.message)
     }
   });
 
