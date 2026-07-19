@@ -30,16 +30,16 @@ export function PageShell({
   return (
     <Section>
       {(hasHeaderText || hasButtons) && (
-        <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <header className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between  slide-down">
           {hasHeaderText && (
             <div className="grid gap-1">
               {title && (
-                <h1 className="m-0 whitespace-nowrap text-[clamp(1.5rem,2vw,2.3rem)] font-bold tracking-[-0.03em] text-on-surface">
+                <h1 className="m-0 whitespace-nowrap text-[clamp(1.5rem,2vw,2.3rem)] font-semibold tracking-[-0.02em] text-on-surface">
                   {title}
                 </h1>
               )}
               {subtitle && (
-                <p className="m-0 whitespace-nowrap text-sm   text-on-surface-variant">
+                <p className="m-0 whitespace-nowrap text-lg   text-on-surface-variant">
                   {subtitle}
                 </p>
               )}
@@ -52,7 +52,7 @@ export function PageShell({
                 <button
                   type="button"
                   onClick={exportAction.onClick}
-                  className="flex items-center gap-2 rounded-md border border-outline-variant bg-surface px-4 py-2.5 text-sm font-semibold text-on-surface shadow-soft transition-all duration-150 hover:-translate-y-px"
+                  className="flex items-center gap-2 rounded-[1rem] border border-outline-variant bg-surface px-4 py-2.5 text-sm font-semibold text-on-surface shadow-soft transition-all duration-150 hover:-translate-y-px"
                 >
                   <Download size={16} />
                   {exportAction.label}
@@ -62,7 +62,7 @@ export function PageShell({
                 <button
                   type="button"
                   onClick={createAction.onClick}
-                  className="flex items-center gap-2 rounded-md bg-on-surface px-4 py-2.5 text-sm font-semibold text-surface shadow-soft transition-all duration-150 hover:-translate-y-px"
+                  className="flex items-center gap-2 rounded-[1rem] bg-on-surface px-4 py-2.5 text-sm font-semibold text-surface shadow-soft transition-all duration-150 hover:-translate-y-px"
                 >
                   <Plus size={16} />
                   {createAction.label}

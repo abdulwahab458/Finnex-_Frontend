@@ -5,6 +5,7 @@ import { isEmail } from '@/lib/validators'
 import { useForm } from 'react-hook-form'
 import { useLogin } from '../hooks/useLogin'
 import { getDashboardPath } from '@/lib/roles'
+import { Loader2 } from 'lucide-react'
 
 interface LoginFormValues {
   email: string
@@ -13,7 +14,7 @@ interface LoginFormValues {
 
 export function LoginPage() {
   const navigate = useNavigate()
-  const { login } = useLogin()
+  const { login,isLoading} = useLogin()
   const {
     register,
     handleSubmit,
@@ -76,10 +77,8 @@ export function LoginPage() {
           
         </div>
         <div className="flex w-full justify-center ">
-
-
-        <Button className="w-40 w-[10rem] bg-black py-3 text-[0.76rem] font-bold uppercase tracking-[0.06em] text-white shadow-none hover:bg-neutral-900" type="submit" disabled={isSubmitting}>
-          Login
+        <Button className="w-40  bg-black  py-3 text-[0.76rem] font-bold uppercase tracking-[0.06em] text-white shadow-none hover:bg-neutral-900" type="submit" disabled={isSubmitting}>
+          {isLoading ? <Loader2 size={18} className="animate-spin " /> : 'Login'}
         </Button>
         </div>
       </form>

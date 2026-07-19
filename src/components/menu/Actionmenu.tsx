@@ -43,6 +43,10 @@ interface MenuPosition {
  * resize, and flips above the trigger automatically if there isn't enough
  * room below.
  *
+ * Visual style: frosted-glass panel (translucent + backdrop-blur) rather
+ * than a flat solid card, so it reads as floating above whatever content
+ * is behind it — table rows, page background, etc.
+ *
  * Usage:
  * <ActionsMenu
  *   actions={[
@@ -139,7 +143,7 @@ export function ActionsMenu({
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={triggerLabel}
-        className="text-on-surface-variant hover:text-on-surface"
+        className="text-on-surface-variant hover:text-on-surface slide-down"
       >
         {trigger ?? <MoreVertical size={18} />}
       </button>
@@ -157,7 +161,7 @@ export function ActionsMenu({
               // Avoid a flash at the wrong spot on the very first paint.
               visibility: position ? "visible" : "hidden",
             }}
-            className="z-[9999] overflow-hidden rounded-md border border-gray-100 bg-white py-1 shadow-lg"
+            className="z-[9999] overflow-hidden rounded-[1rem] border border-white/50 bg-white/55 py-1 shadow-2xl shadow-black/10 backdrop-blur-xl backdrop-saturate-150"
           >
             {actions.map((action) => {
               const Icon = action.icon;
@@ -173,15 +177,15 @@ export function ActionsMenu({
                   disabled={action.disabled}
                   className={cn(
                     "flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition-all duration-200",
-                    "border-b border-outline last:border-b-0",
+                    "border-b border-white/30 last:border-b-0",
                     action.variant === "destructive"
-                      ? "text-red-600 hover:bg-red-50"
-                      : "text-gray-700 hover:bg-gray-50",
+                      ? "text-red-600 hover:bg-red-500/10"
+                      : "text-gray-700 hover:bg-white/40",
                     action.disabled && "cursor-not-allowed opacity-50 hover:bg-transparent"
                   )}
                 >
                   {Icon && (
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#D6E3FF] text-black">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#D6E3FF]/70 text-black backdrop-blur-sm">
                       <Icon size={16} />
                     </div>
                   )}

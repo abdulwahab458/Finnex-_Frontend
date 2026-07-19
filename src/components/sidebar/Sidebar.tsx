@@ -1,7 +1,8 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { APP_NAME } from '@/lib/constants'
 import type { NavigationItem } from '@/registry/navigation'
 import { CircleQuestionMark, FileQuestionMark, LogOutIcon } from 'lucide-react'
+import { clearSession } from '@/services/tokenService'
 
 interface SidebarProps {
   items: NavigationItem[]
@@ -70,6 +71,11 @@ function SidebarNavItem({ item, basePath, depth = 0 }: SidebarNavItemProps) {
 }
 
 export function Sidebar({ items, basePath }: SidebarProps) {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    clearSession();
+    navigate('/login'); 
+  }
   return (
     <aside className="sticky top-0 flex h-screen flex-col self-start bg-[#f2f4f6] p-6 shadow-soft">
       {/* Header — fixed */}
@@ -96,7 +102,7 @@ export function Sidebar({ items, basePath }: SidebarProps) {
           </button>
         </span>
         <span className="flex  items-center gap-3 rounded-[10px] px-3 py-2 text-sm font-medium text-on-surface-variant/50">
-          <button className="flex items-center gap-3 text-black">
+          <button className="flex items-center gap-3 text-black" onClick={handleLogout}>
             <LogOutIcon size={25} className="shrink-0" />
             Sign Out
           </button>
