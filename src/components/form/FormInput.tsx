@@ -8,9 +8,9 @@ import type { BaseFieldProps } from "./types";
 export interface FormInputProps<TFieldValues extends FieldValues = FieldValues>
   extends BaseFieldProps<TFieldValues>,
     Omit<React.InputHTMLAttributes<HTMLInputElement>, "name" | "defaultValue" | "className"> {
-  type?: "text" | "email" | "password" | "number" | "tel" | "url";
+  type?: "text" | "email" | "password" | "number" | "tel" | "url" | "file";
   /** Rendered inline at the left edge, e.g. "$" for money fields */
-  prefix?: React.ReactNode;
+  leadingIcon?: React.ReactNode;
 }
 
 /**

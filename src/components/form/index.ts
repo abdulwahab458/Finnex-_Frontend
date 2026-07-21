@@ -10,8 +10,8 @@ export type { FormTextAreaProps } from "./FormTextArea";
 export { FormSelect } from "./FormSelect";
 export type { FormSelectProps } from "./FormSelect";
 
-export { FormDatePicker } from "./FormDatePicker";
-export type { FormDatePickerProps } from "./FormDatePicker";
+export { FormDateTimePicker } from "./FormDateTimePicker";
+export type { FormDateTimePickerProps } from "./FormDateTimePicker";
 
 export { FormCheckbox } from "./FormCheckbox";
 export type { FormCheckboxProps } from "./FormCheckbox";

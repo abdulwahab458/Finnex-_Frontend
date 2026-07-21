@@ -63,7 +63,7 @@ export interface Transaction {
   transactionDate: string;
   merchantName: string;
   notes: string;
-  attachmentUrl: string | null;
+  attachmentUrl?: FileList | null;
 }
 
 /**
@@ -96,3 +96,9 @@ export interface TransactionSummaryResponse {
   errorCode: string | null;
   timestamp: string;
 }
+
+
+export type CreateTransactionPayload = Omit<
+  Transaction,
+  "id"
+>;

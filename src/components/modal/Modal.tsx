@@ -49,7 +49,7 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         className={cn(
-          "relative flex max-h-[90vh] w-full flex-col overflow-hidden rounded-lg bg-white shadow-xl",
+          "relative flex max-h-[90vh] w-full flex-col overflow-hidden rounded-4xl bg-white shadow-xl",
           sizeClass[size]
         )}
       >
