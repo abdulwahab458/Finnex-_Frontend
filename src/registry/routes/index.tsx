@@ -13,10 +13,12 @@ export function getRoutesByRole(role: RouteDefinition['requiredRole']): RouteDef
 }
 
 export function getRegistryRoutes(): ReactNode[] {
-  return routeRegistry.map((route) => {
+  const routes: ReactNode[] = []
+
+  function flattenRoute(route: RouteDefinition) {
     const Component = route.element
 
-    return (
+    routes.push(
       <Route
         key={route.id}
         path={route.path}
@@ -25,9 +27,25 @@ export function getRegistryRoutes(): ReactNode[] {
             <Component />
           </ProtectedRoute>
         }
-      />
+      />,
     )
-  })
+
+    if (route.children) {
+      for (const child of route.children) {
+        flattenRoute({
+          ...child,
+          requiredRole: child.requiredRole ?? route.requiredRole,
+          permissions: child.permissions ?? route.permissions,
+        })
+      }
+    }
+  }
+
+  for (const route of routeRegistry) {
+    flattenRoute(route)
+  }
+
+  return routes
 }
 
 export type { RouteDefinition, RouteRegistry } from './types'

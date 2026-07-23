@@ -8,6 +8,7 @@ export interface RouteDefinition {
   requiredRole: UserRole
   permissions?: string[]
   layout?: ComponentType
+  children?: RouteDefinition[]
 }
 
 export type RouteRegistry = RouteDefinition[]

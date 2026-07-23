@@ -9,7 +9,7 @@ import { ActionsMenu } from '@/components/menu/Actionmenu';
 import { useAccounts } from '@/features/accounts/hooks/useAccounts';
 import { FormProvider, useForm } from 'react-hook-form';
 import { Modal } from '@/components/modal/Modal';
-import type { Account } from '@/features/accounts/types/accounts.type';
+
 
 import { FormCurrencyInput, FormDateTimePicker, FormFileUpload, FormInput, FormSelect, FormTextArea } from '@/components/form';
 import { ConfirmModal } from '@/components/modal/Confirmmodal';

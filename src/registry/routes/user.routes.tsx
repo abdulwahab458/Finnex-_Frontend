@@ -3,10 +3,11 @@ import { AccountsPage } from '@/features/accounts/pages/AccountsPage'
 import { TransactionsPage } from '@/features/transactions/pages/TransactionsPage'
 import { BudgetsPage } from '@/features/budgets/pages/BudgetsPage'
 import { GoalsPage } from '@/features/goals/pages/GoalsPage'
-import { PortfolioPage } from '@/features/portfolio/pages/PortfolioPage'
+import { PortfolioPage} from '@/features/portfolio/pages/PortfolioPage'
 import { ReportsPage } from '@/features/reports/pages/ReportsPage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
 import type { RouteDefinition } from './types'
+import { PortfolioDetailPage } from '@/features/portfolio/pages/PortfolioDetailPage'
 
 export const userRoutes: RouteDefinition[] = [
   {
@@ -44,6 +45,14 @@ export const userRoutes: RouteDefinition[] = [
     path: '/user/portfolio',
     element: PortfolioPage,
     requiredRole: 'user',
+    children: [
+      {
+        id: 'user-portfolio-detail',
+        path: '/user/portfolio/:id',
+        element: PortfolioDetailPage,
+        requiredRole: 'user',
+      },
+    ],
   },
   {
     id: 'user-reports',
