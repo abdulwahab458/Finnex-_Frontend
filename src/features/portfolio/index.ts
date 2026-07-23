@@ -1,1 +1,1 @@
-export { PortfolioPage } from './pages/PortfolioPage'
+export { PortfolioPage, PortfolioDetailPage } from './pages'

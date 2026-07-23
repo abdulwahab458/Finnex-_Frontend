@@ -46,6 +46,7 @@ export const userNavigation: NavigationItem[] = [
     label: 'Portfolio',
     icon: BarChart3,
     path: '/portfolio',
+
   },
   {
     id: 'reports',
@@ -53,10 +54,5 @@ export const userNavigation: NavigationItem[] = [
     icon: FileText,
     path: '/reports',
   },
-  {
-    id: 'profile',
-    label: 'Profile',
-    icon: UserCircle,
-    path: '/profile',
-  },
+  
 ]
