@@ -1,4 +1,5 @@
-export type RiskLevel = "LOW" | "MODERATE" | "HIGH" | "VERY_HIGH";
+export type RiskLevel = "LOW" | "MODERATE" | "HIGH" | "AGGRESSIVE";
+export type ConfirmAction = "create" | "update" | "delete";
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -84,6 +85,11 @@ export type CreateHoldingPayload = {
 export type updateHoldingPayload = {
   quantity:number;
   averageCostBasis:number;
+}
+
+export type CreatePortfolioPayload = {
+  name: string;
+  riskLevel: RiskLevel;
 }
 
 export interface StockSearchResult {

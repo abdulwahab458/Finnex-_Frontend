@@ -3,7 +3,7 @@ import { useCreateHolding, useDeleteHolding, useHoldings, usePortfolio, usePortf
 import { PageShell } from "@/components/common/PageShell";
 import { PortfolioPerformanceChart } from "../components/PortfolioPeformanceChart";
 import { useEffect, useState } from "react";
-import type { CreateHoldingPayload, Holding, PortfolioPeriod } from "../types/portfolio.types";
+import type { ConfirmAction, CreateHoldingPayload, Holding, PortfolioPeriod } from "../types/portfolio.types";
 import { PortfolioAllocationChart } from "../components/PeformanceAllocation";
 import { Table } from "@/components/tables/Table";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { ConfirmModal } from "@/components/modal/Confirmmodal";
 import { FormStockSearch } from "../components/FormStockSearch";
 
-type ConfirmAction = "create" | "update" | "delete";
+
 export function PortfolioDetailPage() {
     const { id } = useParams<{ id: string }>();
     const [period, setPeriod] = useState<PortfolioPeriod>("M1");

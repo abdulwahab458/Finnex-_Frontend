@@ -25,5 +25,8 @@ export type { FormRadioGroupProps } from "./FormRadioGroup";
 export { FormFileUpload } from "./FormFileUpload";
 export type { FormFileUploadProps } from "./FormFileUpload";
 
+export { FormRiskSlider, type RiskLevel } from "./FormRiskSlider";
+export type { FormRiskSliderProps } from "./FormRiskSlider";
+
 export { FormFieldWrapper } from "./FormFieldWrapper";
 export type { BaseFieldProps, FieldRules, SelectOption } from "./types";

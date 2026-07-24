@@ -1,9 +1,22 @@
 import { apiClient } from "@/api/axios";
-import type { CreateHoldingPayload, Holding, HoldingListResponse, Portfolio, PortfolioAllocationData, PortfolioAllocationResponse, PortfolioPerformanceData, PortfolioPerformanceResponse, PortfolioPeriod, StockSearchResponse, StockSearchResult, updateHoldingPayload } from "../types/portfolio.types";
+import type { CreateHoldingPayload, CreatePortfolioPayload, Holding, HoldingListResponse, Portfolio, PortfolioAllocationData, PortfolioAllocationResponse, PortfolioPerformanceData, PortfolioPerformanceResponse, PortfolioPeriod, StockSearchResponse, StockSearchResult, updateHoldingPayload } from "../types/portfolio.types";
 
 
 export const getPortfolios = async (): Promise<Portfolio[]> => {
     const response = await apiClient.get("/portfolios");
+    return response.data.data;
+}
+
+export const createPortfolio = async (payload: CreatePortfolioPayload): Promise<Portfolio> => {
+    const response = await apiClient.post("/portfolios", payload);
+    return response.data.data;
+}
+export const updatePortfolio = async (portfolioId:string,payload: CreatePortfolioPayload): Promise<Portfolio> => {
+    const response = await apiClient.put(`/portfolios/${portfolioId}`, payload);
+    return response.data.data;
+}
+export const deletePortfolio = async (portfolioId:string) => {
+    const response = await apiClient.delete(`/portfolios/${portfolioId}`);
     return response.data.data;
 }
 

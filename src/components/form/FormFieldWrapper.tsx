@@ -10,6 +10,7 @@ interface FormFieldWrapperProps {
   helperText?: string;
   error?: FieldError;
   className?: string;
+  headerRight?: React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -25,18 +26,22 @@ export function FormFieldWrapper({
   helperText,
   error,
   className,
+  headerRight,
   children,
 }: FormFieldWrapperProps) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       {label && (
-        <label
-          htmlFor={htmlFor}
-          className="text-[11px] font-semibold uppercase tracking-wide text-gray-500"
-        >
-          {label}
-          {required && <span className="ml-0.5 text-red-500">*</span>}
-        </label>
+        <div className="flex items-center justify-between">
+          <label
+            htmlFor={htmlFor}
+            className="text-[11px] font-semibold uppercase tracking-wide text-gray-500"
+          >
+            {label}
+            {required && <span className="ml-0.5 text-red-500">*</span>}
+          </label>
+          {headerRight}
+        </div>
       )}
 
       {children}
