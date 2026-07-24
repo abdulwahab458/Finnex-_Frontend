@@ -30,23 +30,17 @@ export const userNavigation: NavigationItem[] = [
     path: '/transactions',
   },
   {
-    id: 'budgets',
-    label: 'Budgets',
-    icon: PiggyBank,
-    path: '/budgets',
-  },
-  {
-    id: 'goals',
-    label: 'Goals',
-    icon: Target,
-    path: '/goals',
-  },
-  {
     id: 'portfolio',
     label: 'Portfolio',
     icon: BarChart3,
     path: '/portfolio',
 
+  },
+  {
+    id: 'budgets',
+    label: 'Budgets & Goals',
+    icon: PiggyBank,
+    path: '/budgets',
   },
   {
     id: 'reports',

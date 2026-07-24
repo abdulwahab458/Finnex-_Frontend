@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createHolding, deleteHolding, getHoldings, getPortfolioAllocation, getPortfolioById, getPortfolioPerformance, getPortfolios, searchStocks, updateHolding } from "../api/portfolioApi";
-import type { CreateHoldingPayload, PortfolioPeriod, updateHoldingPayload } from "../types/portfolio.types";
+import { createHolding, createPortfolio, deleteHolding, deletePortfolio, getHoldings, getPortfolioAllocation, getPortfolioById, getPortfolioPerformance, getPortfolios, searchStocks, updateHolding, updatePortfolio } from "../api/portfolioApi";
+import type { CreateHoldingPayload, CreatePortfolioPayload, PortfolioPeriod, updateHoldingPayload } from "../types/portfolio.types";
 import { useDebounce } from "@/hooks/useDebounce";
 import { toast } from "react-toastify";
 import type { AxiosError } from "axios";
@@ -22,6 +22,88 @@ export const usePortfolios = () => {
     };
 };
 
+
+export const useCreatePortfolio = () => {
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: (payload: CreatePortfolioPayload) =>
+            createPortfolio(payload),
+
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["portfolios"],
+            });
+            toast.success("Portfolio created successfully");
+        },
+        onError: (err: AxiosError<any>) => {
+            toast.error(err.response?.data?.message ?? "Failed to create portfolio");
+        },
+    });
+
+    return {
+        createPortfolio: mutation.mutateAsync,
+        isCreatePending: mutation.isPending,
+        createError: mutation.error,
+    };
+};
+export const useUpdatePortfolio = () => {
+    const queryClient = useQueryClient();
+
+    const mutation = useMutation({
+        mutationFn: (
+            {
+                portfolioId,
+                payload
+            }:{
+                portfolioId:string,
+                payload:CreatePortfolioPayload
+            }
+        ) =>
+            updatePortfolio(portfolioId,payload),
+
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["portfolios"],
+            });
+            toast.success("Portfolio updated successfully");
+        },
+        onError: (err: AxiosError<any>) => {
+            toast.error(err.response?.data?.message ?? "Failed to create portfolio");
+        },
+    });
+
+    return {
+        updatePortfolio: mutation.mutateAsync,
+        isUpdatePending: mutation.isPending,
+        updateError: mutation.error,
+    };
+};
+export const useDeletePortfolio = () => {
+    const queryClient = useQueryClient();
+
+
+    const mutation = useMutation({
+        mutationFn: (portfolioId:string) =>
+            deletePortfolio(portfolioId),
+
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: ["portfolios"],
+            });
+            toast.success("Portfolio deleted successfully");
+        },
+        onError: (err: AxiosError<any>) => {
+            toast.error(err.response?.data?.message ?? "Failed to create portfolio");
+        },
+    });
+
+    return {
+        deletePortfolio: mutation.mutateAsync,
+        isDeletePending: mutation.isPending,
+        updateError: mutation.error,
+    };
+};
 
 export const usePortfolio = (portfolioId: string) => {
     const query = useQuery({
