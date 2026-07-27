@@ -33,12 +33,14 @@ export const userRoutes: RouteDefinition[] = [
     path: '/user/budgets',
     element: BudgetsPage,
     requiredRole: 'user',
-  },
-  {
-    id: 'user-goals',
-    path: '/user/goals',
-    element: GoalsPage,
-    requiredRole: 'user',
+    children: [
+      {
+        id: 'user-portfolio-detail',
+        path: '/user/budgets/goals',
+        element: GoalsPage,
+        requiredRole: 'user',
+      },
+    ],
   },
   {
     id: 'user-portfolio',

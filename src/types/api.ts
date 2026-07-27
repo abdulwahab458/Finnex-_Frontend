@@ -1,7 +1,9 @@
 export interface ApiResponse<T> {
-  data: T
-  message?: string
-  status?: number
+  success: boolean;
+  message: string;
+  data: T;
+  errorCode: string | null;
+  timestamp: string;
 }
 
 export interface LoginCredentials {

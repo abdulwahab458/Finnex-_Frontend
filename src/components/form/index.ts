@@ -13,6 +13,9 @@ export type { FormSelectProps } from "./FormSelect";
 export { FormDateTimePicker } from "./FormDateTimePicker";
 export type { FormDateTimePickerProps } from "./FormDateTimePicker";
 
+export { FormDatePicker } from "./FormDatePicker";
+export type { FormDatePickerProps } from "./FormDatePicker";
+
 export { FormCheckbox } from "./FormCheckbox";
 export type { FormCheckboxProps } from "./FormCheckbox";
 
