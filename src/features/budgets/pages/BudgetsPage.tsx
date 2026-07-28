@@ -7,9 +7,10 @@ import { Modal } from '@/components/modal/Modal';
 import { ConfirmModal } from '@/components/modal/Confirmmodal';
 import { FormInput, FormSelect, FormCurrencyInput, FormDatePicker } from '@/components/form';
 import { BudgetSpendingLimitsCard } from '../component/BudgetspendinglimitsCard';
-import { useBudgets, useCreateBudget, useUpdateBudget, useDeleteBudget, useGoals } from '../hooks/useBudget';
-import type { Budget, CreateBudgetPayload } from '../types/budget.types';
+import { useBudgets, useCreateBudget, useUpdateBudget, useDeleteBudget} from '../hooks/useBudget';
+import type { Budget, CreateBudgetPayload, Goal } from '../types/budget.types';
 import { GoalCard } from '../component/GoalCard';
+import { useGoals } from '@/features/goals/hooks/useGoals';
 
 type ConfirmAction = "create" | "update" | "delete";
 
@@ -156,7 +157,7 @@ export function BudgetsPage() {
             {hasMoreGoals && (
               <button
                 type="button"
-                onClick={() => navigate('/user/dashboard/budgets/goals')}
+                onClick={() => navigate('/user/budgets/goals')}
                 className="flex items-center gap-1 text-sm font-medium text-on-surface-variant hover:text-on-surface"
               >
                 View all goals
@@ -166,7 +167,7 @@ export function BudgetsPage() {
           </div>
 
           <div className='grid grid-cols-3 gap-3'>
-            {visibleGoals.map((goal) => (
+            {visibleGoals?.map((goal:Goal) => (
               <GoalCard
                 key={goal.id}
                 goal={goal}

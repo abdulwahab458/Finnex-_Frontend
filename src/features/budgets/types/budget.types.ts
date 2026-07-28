@@ -81,4 +81,13 @@ export interface Goal {
     /** ISO date string, e.g. "2027-12-31" */
     targetDate: string;
 }
-    export type GoalResponse = ApiResponse<Goal[]>;
+export type GoalResponse = ApiResponse<Goal[]>;
+
+
+
+export interface CreateGoalPayload {
+    name: string;
+    targetAmount: number;
+    targetDate: string;
+    category:GoalCategory;
+}
