@@ -78,16 +78,3 @@ export const useDeleteBudget = () => {
 
 
 
-export const useGoals = () => {
-    const query = useQuery({
-        queryKey: ["goals"],
-        queryFn: getGoals,
-    });
-
-    return {
-        goals: query.data,
-        useGoalsLoading: query.isLoading,
-        goalsIsError: query.isError,
-        goalerror: query.error,
-    };
-};

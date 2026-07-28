@@ -12,6 +12,7 @@ import {
   Target,
   Pencil,
   Trash2,
+  PlusCircle,
   type LucideIcon,
 } from "lucide-react";
 import type { Goal, GoalCategory } from "../types/budget.types" ;
@@ -62,16 +63,20 @@ export interface GoalCardProps {
   goal: Goal;
   onEdit?: (goal: Goal) => void;
   onDelete?: (goal: Goal) => void;
+  /** Optional — pass this to show a "Contribute" button at the bottom of
+   *  the card for adding money toward the goal. Omit it and the card
+   *  renders exactly as before, no button at all. */
+  onContribute?: (goal: Goal) => void;
 }
 
-export function GoalCard({ goal, onEdit, onDelete }: GoalCardProps) {
+export function GoalCard({ goal, onEdit, onDelete, onContribute }: GoalCardProps) {
   const Icon = CATEGORY_ICON[goal.category] ?? Target;
   const progress = Math.min(100, Math.max(0, goal.progressPercentage));
 
   return (
     <div className="w-full max-w-sm rounded-[1.2rem] border border-gray-100 bg-white p-5 shadow-sm">
       <div className="flex items-start justify-between">
-        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100">
+        <div className="flex h-11 w-11 items-center justify-center rounded-[1.2rem] bg-gray-100">
           <Icon className="h-5 w-5 text-gray-700" strokeWidth={1.75} />
         </div>
 
@@ -119,15 +124,28 @@ export function GoalCard({ goal, onEdit, onDelete }: GoalCardProps) {
         />
       </div>
 
-     
+      <div className="mt-2 flex flex-col items-center justify-between text-sm">
+        <div className="flex w-full items-center justify-between">
 
-      <div className="mt-2 flex items-center justify-between text-sm">
         <span className="font-medium text-gray-900">
           {formatCurrency(goal.currentAmount)}
         </span>
         <span className="text-gray-400">
           {formatCurrency(goal.targetAmount)}
         </span>
+        </div>
+      
+
+      {onContribute && (
+        <button
+          type="button"
+          onClick={() => onContribute(goal)}
+          className="mt-4 flex  items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
+        >
+          <PlusCircle className="h-4 w-4" strokeWidth={1.75} />
+          Contribute
+        </button>
+      )}
       </div>
     </div>
   );
@@ -137,13 +155,20 @@ export interface GoalListProps {
   goals: Goal[];
   onEdit?: (goal: Goal) => void;
   onDelete?: (goal: Goal) => void;
+  onContribute?: (goal: Goal) => void;
 }
 
-export function GoalList({ goals, onEdit, onDelete }: GoalListProps) {
+export function GoalList({ goals, onEdit, onDelete, onContribute }: GoalListProps) {
   return (
     <div className="flex flex-wrap gap-5">
       {goals.map((goal) => (
-        <GoalCard key={goal.id} goal={goal} onEdit={onEdit} onDelete={onDelete} />
+        <GoalCard
+          key={goal.id}
+          goal={goal}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onContribute={onContribute}
+        />
       ))}
     </div>
   );

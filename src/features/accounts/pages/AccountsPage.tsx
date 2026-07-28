@@ -128,11 +128,7 @@ export function AccountsPage() {
       >
 
         <Table.Root
-          pagination={{
-            currentPage: page,
-            totalPages,
-            onPageChange: setPage,
-          }}
+          
         >
           <Table.Header>
             <Table.HeaderCell>Account Name</Table.HeaderCell>
