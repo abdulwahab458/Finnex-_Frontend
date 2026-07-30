@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/Button'
-import { useAuth } from '@/hooks/useAuth'
-import { APP_NAME } from '@/lib/constants'
+
 import { Bell, Search, Settings, User } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 export function Navbar() {
-  // const { user, displayName, logout } = useAuth()
+  // const { user, displayName, logout } = useAuth()] 
+  const navigate = useNavigate()
 
   return (
     <div className="mb-6 p-2 px-5 bg-surface-container-high flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -23,7 +23,7 @@ export function Navbar() {
         <button onClick={() => console.log('Settings clicked')}>
           <Settings size={20} className="text-on-surface-variant" />
         </button>
-        <button onClick={() => console.log('Profile clicked')}>
+        <button onClick={() => navigate('/user/profile')} className="hover:bg-surface-container rounded-full p-2 transition-colors">
           <User size={20} className="text-on-surface-variant" />
         </button>
       </div>
