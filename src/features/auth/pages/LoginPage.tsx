@@ -34,7 +34,7 @@ export function LoginPage() {
     <AuthCard title="Welcome back" description="Please enter your details to access your account.">
       <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label className="grid gap-2  text-[0.95rem] font-medium text-on-surface-variant ">
-          <div className='tracking-widest uppercase'>
+          <div className='tracking-widest uppercase text-xs'>
 
           Email 
           </div>
@@ -76,12 +76,12 @@ export function LoginPage() {
           </button>
           
         </div>
-        <div className="flex w-full justify-center ">
+        <div className="flex w-full justify-center  ">
         <Button className="w-40  bg-black  py-3 text-[0.76rem] font-bold uppercase tracking-[0.06em] text-white shadow-none hover:bg-neutral-900" type="submit" disabled={isSubmitting}>
           {isLoading ? <Loader2 size={18} className="animate-spin " /> : 'Login'}
         </Button>
         </div>
       </form>
-    </AuthCard>
+    </AuthCard> 
   )
 }

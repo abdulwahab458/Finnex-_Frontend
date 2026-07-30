@@ -141,7 +141,7 @@ export function ConfirmModal({
 
   return (
     <div
-      className="fixed inset-0 z-60 flex items-center justify-center bg-black/40 p-4 slide-down"
+      className="fixed inset-0 z-60 flex items-center justify-center  bg-black/40 p-4 slide-down"
       onMouseDown={(e) => {
         if (e.target === e.currentTarget && !loading) onClose();
       }}
@@ -150,7 +150,7 @@ export function ConfirmModal({
         role="alertdialog"
         aria-modal="true"
         aria-labelledby="confirm-modal-title"
-        className="relative w-full max-w-md rounded-lg bg-white p-6 text-center shadow-xl"
+        className="relative w-full max-w-md rounded-[1.2rem] bg-white p-6 text-center shadow-xl"
       >
         <div
           className={cn(
