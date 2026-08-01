@@ -4,7 +4,7 @@ import { TransactionsPage } from '@/features/transactions/pages/TransactionsPage
 import { BudgetsPage } from '@/features/budgets/pages/BudgetsPage'
 import { GoalsPage } from '@/features/goals/pages/GoalsPage'
 import { PortfolioPage} from '@/features/portfolio/pages/PortfolioPage'
-import { ReportsPage } from '@/features/reports/pages/ReportsPage'
+import { LoansPage } from '@/features/reports/pages/Loanspage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
 import type { RouteDefinition } from './types'
 import { PortfolioDetailPage } from '@/features/portfolio/pages/PortfolioDetailPage'
@@ -59,7 +59,7 @@ export const userRoutes: RouteDefinition[] = [
   {
     id: 'user-reports',
     path: '/user/reports',
-    element: ReportsPage,
+    element: LoansPage,
     requiredRole: 'user',
   },
   {

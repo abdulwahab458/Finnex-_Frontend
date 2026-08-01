@@ -208,9 +208,9 @@ export function BudgetSpendingLimitsCard({
             </div>
 
             {/* Rows */}
-            <div className="mt-5 flex flex-col gap-5">
+            <div className="mt-5 flex min-h-[14rem] max-h-[14rem] flex-col gap-5 overflow-y-auto scrollbar-hide">
                 {visibleBudgets.length === 0 ? (
-                    <p className="py-6 text-center text-sm text-on-surface-variant">
+                    <p className="flex h-full items-center justify-center text-center text-sm text-on-surface-variant">
                         No {periodLabels[activePeriod].toLowerCase()} budgets set yet.
                     </p>
                 ) : (
