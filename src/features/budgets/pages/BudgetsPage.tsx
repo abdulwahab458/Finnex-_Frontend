@@ -7,6 +7,7 @@ import { Modal } from '@/components/modal/Modal';
 import { ConfirmModal } from '@/components/modal/Confirmmodal';
 import { FormInput, FormSelect, FormCurrencyInput, FormDatePicker } from '@/components/form';
 import { BudgetSpendingLimitsCard } from '../component/BudgetspendinglimitsCard';
+import { BudgetSummaryCard } from '../component/BudgetSummaryCard';
 import { useBudgets, useCreateBudget, useUpdateBudget, useDeleteBudget} from '../hooks/useBudget';
 import type { Budget, CreateBudgetPayload, Goal } from '../types/budget.types';
 import { GoalCard } from '../component/GoalCard';
@@ -121,8 +122,7 @@ export function BudgetsPage() {
           },
         }}
       >
-        <div className="flex  gap-4">
-
+        <div className="flex flex-col gap-4 lg:flex-row">
 
           <BudgetSpendingLimitsCard
             budgets={budgets ?? []}
@@ -143,7 +143,12 @@ export function BudgetsPage() {
               setConfirmAction("delete");
               setConfirmOpen(true);
             }}
-            className='flex-2'
+            className='flex-[2] lg:min-w-0'
+          />
+
+          <BudgetSummaryCard
+            budgets={budgets ?? []}
+            className='flex-1 lg:min-w-0'
           />
 
         </div>
