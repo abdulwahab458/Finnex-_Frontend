@@ -43,8 +43,8 @@ export const userNavigation: NavigationItem[] = [
     path: '/budgets',
   },
   {
-    id: 'reports',
-    label: 'Reports',
+    id: 'loans',
+    label: 'Loans',
     icon: FileText,
     path: '/reports',
   },
