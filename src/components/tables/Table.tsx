@@ -188,12 +188,14 @@ interface TableCellProps {
   readonly children: ReactNode
   readonly align?: 'left' | 'center' | 'right'
   readonly className?: string
+  /** Number of columns the cell spans across. */
+  readonly colSpan?: number
 }
 
-function Cell({ children, align = 'left', className }: Readonly<TableCellProps>) {
+function Cell({ children, align = 'left', className, colSpan }: Readonly<TableCellProps>) {
   const alignClass = align === 'right' ? 'text-right' : align === 'center' ? 'text-center' : 'text-left'
   return (
-    <td className={`px-6 py-4 text-sm text-on-surface ${alignClass} ${className ?? ''}`}>
+    <td colSpan={colSpan} className={`px-6 py-4 text-sm text-on-surface ${alignClass} ${className ?? ''}`}>
       {children}
     </td>
   )

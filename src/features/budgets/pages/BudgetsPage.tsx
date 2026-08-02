@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Target } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
 import { PageShell } from '@/components/common/PageShell';
@@ -62,7 +62,7 @@ export function BudgetsPage() {
   const { updateBudget, isUpdatePending } = useUpdateBudget();
   const { deleteBudget, isDeletePending } = useDeleteBudget();
 
-  const { goals } = useGoals();
+  const { goals, useGoalsLoading } = useGoals();
   const visibleGoals = (goals ?? []).slice(0, GOALS_PREVIEW_COUNT);
   const hasMoreGoals = (goals?.length ?? 0) > GOALS_PREVIEW_COUNT;
 
@@ -110,7 +110,7 @@ export function BudgetsPage() {
 
   return (
     <>
-      <PageShell
+      <PageShell showBackButton
         title="Budgets"
         subtitle="Track your spending against your limits"
         createAction={{
@@ -159,19 +159,33 @@ export function BudgetsPage() {
               Saving Goals
             </h1>
 
-            {hasMoreGoals && (
+            
               <button
                 type="button"
                 onClick={() => navigate('/user/budgets/goals')}
                 className="flex items-center gap-1 text-sm font-medium text-on-surface-variant hover:text-on-surface"
               >
-                View all goals
+                Go to Goals
                 <ArrowRight size={16} />
               </button>
-            )}
+            
           </div>
 
           <div className='grid grid-cols-3 gap-3'>
+            {!useGoalsLoading && (goals ?? []).length === 0 && (
+              <div className="col-span-full flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-outline/30 bg-surface py-10 text-center">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant">
+                  <Target size={20} />
+                </div>
+                <div>
+                  <p className="font-semibold text-on-surface">No savings goals yet</p>
+                  <p className="mt-1 text-sm text-on-surface-variant">
+                    Set a goal to start tracking what you&apos;re saving for.
+                  </p>
+                </div>
+              </div>
+            )}
+
             {visibleGoals?.map((goal:Goal) => (
               <GoalCard
                 key={goal.id}

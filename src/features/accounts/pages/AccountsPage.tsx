@@ -102,7 +102,7 @@ export function AccountsPage() {
   return (
     <>
 
-      <PageShell title="Accounts & Assets"
+      <PageShell title="Accounts & Assets" showBackButton
         subtitle="Comprehensive overview of your financial standing and asset distribution"
         exportAction={{
           label: 'Export Report',
@@ -139,7 +139,20 @@ export function AccountsPage() {
           </Table.Header>
 
           <Table.Body>
-            {(accounts ?? []).map((account) => {
+            {isLoading ? (
+              <tr>
+                <td colSpan={5} className="px-6 py-8 text-center text-sm text-on-surface-variant">
+                  Loading accounts...
+                </td>
+              </tr>
+            ) : (accounts ?? []).length === 0 ? (
+              <tr>
+                <td colSpan={5} className="px-6 py-8 text-center text-sm text-on-surface-variant">
+                  No accounts yet. Link your first account to get started.
+                </td>
+              </tr>
+            ) : (
+            (accounts ?? []).map((account) => {
               const Icon = accountIcons[account.accountType] || Wallet; // Default to Wallet if no icon is found
               return (
                 <Table.Row key={account.id}>
@@ -205,7 +218,8 @@ export function AccountsPage() {
                   </Table.Cell>
                 </Table.Row>
               )
-            })}
+            })
+            )}
           </Table.Body>
         </Table.Root>
       </PageShell>

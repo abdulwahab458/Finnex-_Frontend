@@ -183,7 +183,7 @@ export function TransactionsPage() {
 
   return (
     <>
-      <PageShell title="Transactions"
+      <PageShell title="Transactions" showBackButton
         subtitle="View and manage your recent activity across all accounts."
         exportAction={{
           label: 'Export Report',
@@ -244,6 +244,24 @@ export function TransactionsPage() {
           </Table.Header>
 
           <Table.Body>
+            {!isLoading && (transactions ?? []).length === 0 && (
+              <Table.Row>
+                <Table.Cell align="center" className="py-12" colSpan={7} >
+                  <div className="flex flex-col items-center justify-center gap-3 text-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant">
+                      <Receipt size={20} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-on-surface">No transactions yet</p>
+                      <p className="mt-1 text-sm text-on-surface-variant">
+                        Start by creating your first transaction to see it here.
+                      </p>
+                    </div>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+            )}
+
             {(transactions ?? []).map((transaction) => {
               const CategoryIcon = transactionCategoryIcons[transaction.category];
               return (
