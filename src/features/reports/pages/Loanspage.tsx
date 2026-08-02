@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, HandCoins } from 'lucide-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { PageShell } from '@/components/common/PageShell';
 import { Modal } from '@/components/modal/Modal';
@@ -37,7 +37,7 @@ const loanTypeOptions = [
 ];
 
 export function LoansPage() {
-  const { loans } = useLoans();
+  const { loans, isLoading } = useLoans();
   const { createLoan, isCreatePending } = useCreateLoan();
   const { updateLoan, isUpdatePending } = useUpdateLoan();
   const { deleteLoan, isDeletePending } = useDeleteLoan();
@@ -115,7 +115,7 @@ export function LoansPage() {
 
   return (
     <>
-      <PageShell
+      <PageShell showBackButton
         title="Loans"
         subtitle="Track what you owe and stay on top of payments"
         createAction={{
@@ -128,6 +128,20 @@ export function LoansPage() {
         }}
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {!isLoading && (loans ?? []).length === 0 && (
+            <div className="col-span-full flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-outline/30 bg-surface py-16 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant">
+                <HandCoins size={22} />
+              </div>
+              <div>
+                <p className="font-semibold text-on-surface">No loans yet</p>
+                <p className="mt-1 text-sm text-on-surface-variant">
+                  Add your first loan to start tracking your repayments.
+                </p>
+              </div>
+            </div>
+          )}
+
           {loans?.map((loan: Loan) => (
             <LoanCard
               key={loan.id}

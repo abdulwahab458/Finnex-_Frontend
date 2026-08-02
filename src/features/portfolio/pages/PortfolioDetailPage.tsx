@@ -101,7 +101,7 @@ export function PortfolioDetailPage() {
 
     return (
         <>
-            <PageShell title={portfolio?.name}
+            <PageShell title={portfolio?.name} showBackButton
                 exportAction={{
                     label: 'Export Report',
                     onClick: () => console.log('Exporting report...'),

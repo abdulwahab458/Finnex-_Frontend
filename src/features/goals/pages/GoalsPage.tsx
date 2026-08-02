@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Check } from 'lucide-react';
+import { Check, Target } from 'lucide-react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { PageShell } from '@/components/common/PageShell';
 import { Modal } from '@/components/modal/Modal';
@@ -38,7 +38,7 @@ const goalCategoryOptions = [
 ];
 
 export function GoalsPage() {
-  const { goals } = useGoals();
+  const { goals, useGoalsLoading } = useGoals();
   const { createGoal, isCreatePending } = useCreateGoal();
   const { updateGoal, isUpdatePending } = useUpdateGoal();
   const { deleteGoal, isDeletePending } = useDeleteGoal();
@@ -126,6 +126,20 @@ export function GoalsPage() {
         }}
       >
         <div className='grid grid-cols-3 gap-3'>
+          {!useGoalsLoading && (goals ?? []).length === 0 && (
+            <div className="col-span-full flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-outline/30 bg-surface py-16 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant">
+                <Target size={22} />
+              </div>
+              <div>
+                <p className="font-semibold text-on-surface">No goals yet</p>
+                <p className="mt-1 text-sm text-on-surface-variant">
+                  Set your first savings goal to start tracking your progress.
+                </p>
+              </div>
+            </div>
+          )}
+
           {goals?.map((goal: Goal) => (
             <GoalCard
               key={goal.id}

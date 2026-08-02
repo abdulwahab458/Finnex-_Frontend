@@ -9,10 +9,10 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { Modal } from '@/components/modal/Modal';
 import { FormRiskSlider, FormInput } from '@/components/form';
 import { ConfirmModal } from '@/components/modal/Confirmmodal';
-import { Check } from 'lucide-react';
+import { Check, FolderPlus } from 'lucide-react';
 
 export function PortfolioPage() {
-  const { portfolioData } = usePortfolios();
+  const { portfolioData, isLoading } = usePortfolios();
   const { createPortfolio, isCreatePending } = useCreatePortfolio();
   const { updatePortfolio, isUpdatePending } = useUpdatePortfolio();
   const { deletePortfolio, isDeletePending } = useDeletePortfolio();
@@ -64,7 +64,7 @@ export function PortfolioPage() {
 
   return (
     <>
-      <PageShell title="My Portfolio"
+      <PageShell title="My Portfolio" showBackButton
         subtitle='Manage your investment portfolios'
         exportAction={{
           label: 'Export Report',
@@ -79,6 +79,20 @@ export function PortfolioPage() {
         }}
       >
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {!isLoading && (portfolioData ?? []).length === 0 && (
+            <div className="col-span-full flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-outline/30 bg-surface py-16 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant">
+                <FolderPlus size={22} />
+              </div>
+              <div>
+                <p className="font-semibold text-on-surface">No portfolios yet</p>
+                <p className="mt-1 text-sm text-on-surface-variant">
+                  Create your first portfolio to start tracking your investments.
+                </p>
+              </div>
+            </div>
+          )}
+
           {portfolioData?.map((portfolio: Portfolio) => (
             <PortfolioCard
               key={portfolio.id}
