@@ -10,17 +10,21 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@joseantonionuevo/ai-chat-widget": "^1.5.1",
     "@tanstack/react-query": "^5.101.2",
     "axios": "^1.18.1",
     "boneyard-js": "^1.9.0",
+    "business-chat-widget": "^1.1.4",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.81.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.18.1",
     "react-toastify": "^11.1.0",
     "recharts": "^3.10.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
