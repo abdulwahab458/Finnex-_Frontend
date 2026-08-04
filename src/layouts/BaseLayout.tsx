@@ -6,9 +6,9 @@ import { filterByPermissions } from '@/lib/permissions'
 import { normalizeRole } from '@/lib/roles'
 import { getNavigationByRole } from '@/registry/navigation'
 import { authStore } from '@/store/authStore'
+import { CHAT_API_URL } from '@/api/chatFetch'
 import { ChatWidget, type ThemeConfig } from '@joseantonionuevo/ai-chat-widget'
 import { Sparkles } from 'lucide-react'
-import { getAccessToken } from '@/services/tokenService'
 
 const chatTheme: ThemeConfig = {
   primary: '#0a192f',
@@ -46,7 +46,7 @@ export function BaseLayout() {
         </main>
 
         <ChatWidget
-          apiUrl="/api/chat"
+          apiUrl={CHAT_API_URL}
           theme={chatTheme}
           title="Modern Trust AI Assistant"
           headerIcon={<Sparkles className='w-5 h-5' />}
