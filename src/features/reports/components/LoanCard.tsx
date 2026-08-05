@@ -176,10 +176,10 @@ export function LoanCard({
         <button
           type="button"
           onClick={() => onMakePayment!(loan)}
-          className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
+          className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-[1.2rem] bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
         >
           <Banknote size={16} />
-          Make Payment
+          Record Payment
         </button>
       )}
     </div>

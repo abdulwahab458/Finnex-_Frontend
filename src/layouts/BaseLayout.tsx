@@ -49,7 +49,7 @@ export function BaseLayout() {
           apiUrl={CHAT_API_URL}
           theme={chatTheme}
           title="Modern Trust AI Assistant"
-          headerIcon={<Sparkles className='w-5 h-5' />}
+          headerIcon={<Sparkles className='w-5 h-5 text-white' />}
           greeting={`Welcome to Modern Trust AI Assistant! 👋
 
 I'm here to help you with anything related to your finances. Ask me about your **transactions**, **budgets**, **savings goals**, **investments**, or **financial insights** — I'll do my best to guide you.

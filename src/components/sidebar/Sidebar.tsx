@@ -98,14 +98,14 @@ export function Sidebar({ items, basePath }: SidebarProps) {
       </nav>
 
       {/* Footer — fixed */}
-      <div className="mt-4 grid shrink-0 gap-2 border-t border-outline pt-4">
-        <span className="flex  items-center gap-3 rounded-[10px] px-3 py-2 text-sm font-medium text-on-surface-variant/50">
+      <div className="mt-4 grid shrink-0 gap-2 border-t border-outline pt-4 ">
+        <span className="flex  items-center gap-3 rounded-[10px] px-3 py-2 text-sm font-medium text-on-surface-variant/50 hover:-translate-y-px hover:bg-surface-container-low hover:text-on-surface">
           <button className="flex items-center gap-3 text-black">
           <CircleQuestionMark size={25} className="shrink-0" />
           Support 
           </button>
         </span>
-        <span className="flex  items-center gap-3 rounded-[10px] px-3 py-2 text-sm font-medium text-on-surface-variant/50">
+        <span className="flex  items-center gap-3 rounded-[10px] px-3 py-2 text-sm font-medium text-on-surface-variant/50 hover:-translate-y-px hover:bg-surface-container-low hover:text-on-surface">
           <button className="flex items-center gap-3 text-black   transition-all" onClick={handleLogout}>
             <LogOutIcon size={25} className="shrink-0" />
             Sign Out
