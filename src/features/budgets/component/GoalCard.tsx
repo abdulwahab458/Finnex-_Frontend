@@ -140,7 +140,7 @@ export function GoalCard({ goal, onEdit, onDelete, onContribute }: GoalCardProps
         <button
           type="button"
           onClick={() => onContribute(goal)}
-          className="mt-4 flex  items-center justify-center gap-1.5 rounded-lg bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
+          className="mt-4 flex  items-center justify-center gap-1.5 rounded-[1.2rem] bg-gray-900 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-gray-800"
         >
           <PlusCircle className="h-4 w-4" strokeWidth={1.75} />
           Contribute
