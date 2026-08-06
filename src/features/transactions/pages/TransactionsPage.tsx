@@ -4,7 +4,7 @@ import { ArrowLeftRight, Ban, Car, Check, CircleHelp, Clock, Eye, Film, Graduati
 import { useCreateTransaction, useDeleteTransaction, useDownloadTransactionAttachment, useTransactions, useTransactionSummary, useUpdateTransaction } from '../hooks/useTransaction';
 import { Table } from '@/components/tables'
 import { useState } from 'react';
-import { TransactionCategory, TransactionStatus, TransactionType, type CreateTransactionPayload, type Transaction } from '../types/transactions.type';
+import { TransactionCategory, TransactionStatus, TransactionType, type CreateTransactionPayload, type Transaction, type TransactionFormValues } from '../types/transactions.type';
 import { ActionsMenu } from '@/components/menu/Actionmenu';
 import { useAccounts } from '@/features/accounts/hooks/useAccounts';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -130,7 +130,7 @@ export function TransactionsPage() {
     value: account.id,
   })) ?? [];
 
-  const methods = useForm<CreateTransactionPayload>({
+  const methods = useForm<TransactionFormValues >({
     mode: "onBlur",
     defaultValues: {
       accountId: "",
@@ -153,6 +153,8 @@ export function TransactionsPage() {
 
   const handleConfirmSubmit = async () => {
     const values = methods.getValues();
+    
+
 
     switch (confirmAction) {
       case "create":
@@ -528,7 +530,7 @@ export function TransactionsPage() {
                   />
 
                   {/* Replace with your reusable FormFileUpload if you have one */}
-                  <FormFileUpload name="attachmentUrl" label="Attachment" hint="Click to upload or drag file" />
+                  <FormFileUpload name="attachment" label="Attachment" hint="Click to upload or drag file" />
                 </form>
               </FormProvider>
 

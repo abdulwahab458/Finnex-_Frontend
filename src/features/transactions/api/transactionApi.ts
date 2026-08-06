@@ -1,5 +1,5 @@
 import { apiClient } from "@/api/axios";
-import type { CreateTransactionPayload, TransactionsPage, TransactionSummary } from "../types/transactions.type";
+import type { CreateTransactionPayload, TransactionFormValues, TransactionsPage, TransactionSummary } from "../types/transactions.type";
 
 
 
@@ -23,10 +23,40 @@ export const getTransactions = async (
   return response.data.data;
 };
 
-export const createTransaction = async(data:CreateTransactionPayload) =>{
-  const response = await apiClient.post("/transactions",data);
+export const createTransaction = async (
+  data: TransactionFormValues
+) => {
+  const {
+    attachment,
+    ...transactionData
+  } = data;
+
+  const formData = new FormData();
+
+  formData.append(
+    "transaction",
+    new Blob(
+      [JSON.stringify(transactionData)],
+      {
+        type: "application/json",
+      }
+    )
+  );
+
+  if (attachment) {
+    formData.append(
+      "attachment",
+      attachment
+    );
+  }
+
+  const response = await apiClient.post(
+    "/transactions",
+    formData
+  );
+
   return response.data.data;
-}
+};
 export const updateTransaction = async(id:string,data:CreateTransactionPayload) =>{
   const response = await apiClient.put(`/transactions/${id}`,data);
   return response.data.data;

@@ -63,7 +63,7 @@ export interface Transaction {
   transactionDate: string;
   merchantName: string;
   notes: string;
-  attachmentUrl?: FileList | null;
+    attachmentUrl?: string | null;
 }
 
 /**
@@ -98,7 +98,9 @@ export interface TransactionSummaryResponse {
 }
 
 
-export type CreateTransactionPayload = Omit<
-  Transaction,
-  "id"
->;
+export type CreateTransactionPayload = Omit<Transaction,"id">;
+
+export type TransactionFormValues =
+  CreateTransactionPayload & {
+    attachment?: File | null;
+  };
