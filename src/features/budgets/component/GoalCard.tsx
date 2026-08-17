@@ -1,4 +1,4 @@
-import React from "react";
+
 import {
   Home,
   PiggyBank,
@@ -7,8 +7,6 @@ import {
   Plane,
   Car,
   Heart,
-  Landmark,
-  TrendingUp,
   Target,
   Pencil,
   Trash2,
@@ -36,12 +34,7 @@ const STATUS_STYLES: Record<Goal["status"], string> = {
   CANCELLED: "bg-red-50 text-red-700",
 };
 
-const STATUS_LABEL: Record<Goal["status"], string> = {
-  IN_PROGRESS: "In progress",
-  COMPLETED: "Completed",
-  NOT_STARTED: "Not started",
-  CANCELLED: "Cancelled",
-};
+
 
 function formatCurrency(amount: number): string {
   return new Intl.NumberFormat("en-US", {

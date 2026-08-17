@@ -3,6 +3,9 @@ import { AdvisorClientsPage } from '@/features/dashboard/pages/AdvisorClientsPag
 import { AdvisorAppointmentsPage } from '@/features/dashboard/pages/AdvisorAppointmentsPage'
 import { AdvisorMessagesPage } from '@/features/dashboard/pages/AdvisorMessagesPage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
+import { NotificationsPage } from '@/features/notifications/pages/NotificationsPage'
+import { SettingsPage } from '@/features/settings/pages/SettingsPage'
+import { SupportPage } from '@/features/support/pages/SupportPage'
 import type { RouteDefinition } from './types'
 
 export const advisorRoutes: RouteDefinition[] = [
@@ -34,6 +37,24 @@ export const advisorRoutes: RouteDefinition[] = [
     id: 'advisor-profile',
     path: '/advisor/profile',
     element: ProfilePage,
+    requiredRole: 'advisor',
+  },
+  {
+    id: 'advisor-notifications',
+    path: '/advisor/notifications',
+    element: NotificationsPage,
+    requiredRole: 'advisor',
+  },
+  {
+    id: 'advisor-settings',
+    path: '/advisor/settings',
+    element: SettingsPage,
+    requiredRole: 'advisor',
+  },
+  {
+    id: 'advisor-support',
+    path: '/advisor/support',
+    element: SupportPage,
     requiredRole: 'advisor',
   },
 ]

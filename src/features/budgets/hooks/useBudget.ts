@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createBudget, deleteBudget, getBudgets, getGoals, updateBudget } from "../api/budgetsApi";
+import { createBudget, deleteBudget, getBudgets,  updateBudget } from "../api/budgetsApi";
 import type { CreateBudgetPayload } from "../types/budget.types";
 
 

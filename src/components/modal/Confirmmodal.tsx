@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   AlertTriangle,
-  Ban,
   CheckCircle2,
   Info,
   Loader2,

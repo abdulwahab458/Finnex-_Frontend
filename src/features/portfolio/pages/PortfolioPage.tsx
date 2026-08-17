@@ -14,8 +14,8 @@ import { Check, FolderPlus } from 'lucide-react';
 export function PortfolioPage() {
   const { portfolioData, isLoading } = usePortfolios();
   const { createPortfolio, isCreatePending } = useCreatePortfolio();
-  const { updatePortfolio, isUpdatePending } = useUpdatePortfolio();
-  const { deletePortfolio, isDeletePending } = useDeletePortfolio();
+  const { updatePortfolio } = useUpdatePortfolio();
+  const { deletePortfolio} = useDeletePortfolio();
 
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);

@@ -3,6 +3,8 @@ import { AdminUsersPage } from '@/features/dashboard/pages/AdminUsersPage'
 import { AdminRolesPage } from '@/features/dashboard/pages/AdminRolesPage'
 import { AdminAuditLogsPage } from '@/features/dashboard/pages/AdminAuditLogsPage'
 import { AdminSettingsPage } from '@/features/dashboard/pages/AdminSettingsPage'
+import { NotificationsPage } from '@/features/notifications/pages/NotificationsPage'
+import { SupportPage } from '@/features/support/pages/SupportPage'
 import type { RouteDefinition } from './types'
 
 export const adminRoutes: RouteDefinition[] = [
@@ -37,6 +39,18 @@ export const adminRoutes: RouteDefinition[] = [
     id: 'admin-settings',
     path: '/admin/settings',
     element: AdminSettingsPage,
+    requiredRole: 'admin',
+  },
+  {
+    id: 'admin-notifications',
+    path: '/admin/notifications',
+    element: NotificationsPage,
+    requiredRole: 'admin',
+  },
+  {
+    id: 'admin-support',
+    path: '/admin/support',
+    element: SupportPage,
     requiredRole: 'admin',
   },
 ]

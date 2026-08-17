@@ -1,6 +1,6 @@
 import { PageShell } from '@/components/common/PageShell'
 import { Table } from '@/components/tables'
-import { Ban, Building2, Check, CreditCard, Eye, Landmark, MoreVertical, Pencil, PiggyBank, Wallet } from 'lucide-react'
+import { Ban, Building2, Check, CreditCard, Eye, Landmark,  Pencil, PiggyBank, Wallet } from 'lucide-react'
 import { useAccounts, useCreateAccount, useDeactivateAccount, useUpdateAccount } from '../hooks/useAccounts'
 import { useState } from 'react';
 import { AccountType, type Account, type CreateAccountPayload } from '../types/accounts.type';
@@ -43,10 +43,9 @@ export function AccountsPage() {
   const { accounts, isLoading } = useAccounts();
   const { createAccount, isPending } = useCreateAccount();
   const { updateAccount, updatePending } = useUpdateAccount();
-  const { deactivateAccount, deactivatePending } = useDeactivateAccount();
+  const { deactivateAccount} = useDeactivateAccount();
 
-  const [page, setPage] = useState(1);
-  const totalPages = 12;
+  
 
   const [open, setOpen] = useState(false);
   const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);

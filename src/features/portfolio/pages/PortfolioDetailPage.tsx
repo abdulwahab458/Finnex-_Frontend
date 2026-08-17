@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useCreateHolding, useDeleteHolding, useHoldings, usePortfolio, usePortfolioAllocation, usePortfolioPerformance, useStockSearch, useUpdateHolding } from "../hooks/usePortfolio";
 import { PageShell } from "@/components/common/PageShell";
 import { PortfolioPerformanceChart } from "../components/PortfolioPeformanceChart";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { ConfirmAction, CreateHoldingPayload, Holding, PortfolioPeriod } from "../types/portfolio.types";
 import { PortfolioAllocationChart } from "../components/PeformanceAllocation";
 import { Table } from "@/components/tables/Table";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { Ban, Check, Pencil, TrendingDown, TrendingUp } from "lucide-react";
 import { ActionsMenu } from "@/components/menu/Actionmenu";
 import { Modal } from "@/components/modal/Modal";
-import { FormCurrencyInput, FormDateTimePicker, FormFileUpload, FormInput, FormSelect, FormTextArea } from '@/components/form';
+import { FormCurrencyInput,FormInput} from '@/components/form';
 import { FormProvider, useForm } from 'react-hook-form';
 import { ConfirmModal } from "@/components/modal/Confirmmodal";
 import { FormStockSearch } from "../components/FormStockSearch";
@@ -30,10 +30,10 @@ export function PortfolioDetailPage() {
 
 
     //hooks to fetch portfolio data, performance data, and allocation data
-    const { portfolio, isLoading, isError, error } = usePortfolio(id!);
+    const { portfolio} = usePortfolio(id!);
     const { performance, performanceLoading, performanceError } = usePortfolioPerformance(id!, period);
     const { allocation, allocationLoading, allocationError } = usePortfolioAllocation(id!);
-    const { holdings, holdingsLoading, holdingsIsError, holdingerror } = useHoldings(id!);
+    const { holdings, holdingsLoading, holdingsIsError } = useHoldings(id!);
     const { results, isSearching, isError: stockSearchError } = useStockSearch(symbolQuery);
     const { createHolding } = useCreateHolding(id!);
     const { updateHolding } = useUpdateHolding(id!);

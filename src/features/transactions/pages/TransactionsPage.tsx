@@ -1,10 +1,10 @@
 import { PageShell } from '@/components/common/PageShell'
 import { TransactionStatCard, type TransactionStatCardProps } from '../component/TransactionStatCard'
-import { ArrowLeftRight, Ban, Car, Check, CircleHelp, Clock, Eye, Film, GraduationCap, HeartPulse, House, Landmark, MoreVertical, Pencil, Receipt, Shield, ShoppingBag, ShoppingCart, TrendingDown, TrendingUp, UtensilsCrossed, Wallet, Zap, type LucideIcon } from 'lucide-react'
+import { ArrowLeftRight, Ban, Car, Check, CircleHelp, Clock, Eye, Film, GraduationCap, HeartPulse, House, Landmark,  Pencil, Receipt, Shield, ShoppingBag, ShoppingCart, TrendingDown, TrendingUp, UtensilsCrossed, Wallet, Zap, } from 'lucide-react'
 import { useCreateTransaction, useDeleteTransaction, useDownloadTransactionAttachment, useTransactions, useTransactionSummary, useUpdateTransaction } from '../hooks/useTransaction';
 import { Table } from '@/components/tables'
 import { useState } from 'react';
-import { TransactionCategory, TransactionStatus, TransactionType, type CreateTransactionPayload, type Transaction, type TransactionFormValues } from '../types/transactions.type';
+import { TransactionCategory, TransactionStatus, TransactionType, type Transaction, type TransactionFormValues } from '../types/transactions.type';
 import { ActionsMenu } from '@/components/menu/Actionmenu';
 import { useAccounts } from '@/features/accounts/hooks/useAccounts';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -74,6 +74,7 @@ export function TransactionsPage() {
   const [pageNumber, setPageNumber] = useState(0);
   const [confirmOpen, setConfirmOpen] = useState(false);
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const [viewTransaction, setViewTransaction] = useState<Transaction | null>(null);
   const [confirmAction, setConfirmAction] =
     useState<ConfirmAction | null>(null);
 
@@ -93,7 +94,7 @@ export function TransactionsPage() {
   const { createTransaction, isCreatePending } = useCreateTransaction();
   const {updateTransaction,updateTransactionPending} = useUpdateTransaction();
   const {deleteTransaction} = useDeleteTransaction();
-  const { downloadAttachment, isDownloadPending } =
+  const { downloadAttachment} =
   useDownloadTransactionAttachment
   (); 
 
@@ -355,6 +356,8 @@ export function TransactionsPage() {
                   </Table.Cell>
 
                   <Table.Cell align="center">
+                    <div className="flex items-center justify-center gap-2">
+                      
                     <ActionsMenu
                       actions={[
                         {
@@ -378,7 +381,7 @@ export function TransactionsPage() {
                             setOpen(true);
                           }
                         },
-                        { label: "View Details", icon: Eye, onClick: () => alert("View details") },
+                        { label: "View Details", icon: Eye, onClick: () => setViewTransaction(transaction) },
                         {
                           label: "Delete", icon: Ban,
                           onClick: () => {
@@ -391,6 +394,7 @@ export function TransactionsPage() {
                         },
                       ]}
                     />
+                    </div>
                   </Table.Cell>
                 </Table.Row>
               )
@@ -571,6 +575,60 @@ export function TransactionsPage() {
         }
         onConfirm={handleConfirmSubmit}
       />
+
+      <Modal
+        open={viewTransaction !== null}
+        onClose={() => setViewTransaction(null)}
+        title="Transaction Details"
+        description="Attachment"
+        size="lg"
+      >
+        {viewTransaction?.attachmentUrl ? (
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between rounded-lg bg-surface-container-low px-4 py-3 text-sm">
+              <div>
+                <p className="font-semibold text-on-surface">
+                  {viewTransaction.merchantName}
+                </p>
+                <p className="text-xs text-on-surface-variant">
+                  {new Date(viewTransaction.transactionDate).toLocaleString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })}
+                </p>
+              </div>
+              <span className={`font-bold ${viewTransaction.type === "CREDIT" ? "text-success" : "text-red-600"}`}>
+                {viewTransaction.type === "CREDIT" ? "+" : "-"}₹
+                {viewTransaction.amount.toLocaleString()}
+              </span>
+            </div>
+
+            <div className="flex w-full max-h-[55vh] items-center justify-center overflow-hidden rounded-lg bg-black/5 p-2">
+              <img
+                src={viewTransaction.attachmentUrl}
+                alt={viewTransaction.merchantName}
+                className="max-h-[50vh] max-w-full rounded-lg object-contain"
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-3 py-8 text-center">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-surface-container-low text-on-surface-variant">
+              <Receipt size={20} />
+            </div>
+            <div>
+              <p className="font-semibold text-on-surface">No attachment</p>
+              <p className="mt-1 text-sm text-on-surface-variant">
+                This transaction does not have an attachment.
+              </p>
+            </div>
+          </div>
+        )}
+      </Modal>
 
     </>
   )
