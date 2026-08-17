@@ -6,6 +6,9 @@ import { GoalsPage } from '@/features/goals/pages/GoalsPage'
 import { PortfolioPage} from '@/features/portfolio/pages/PortfolioPage'
 import { LoansPage } from '@/features/reports/pages/Loanspage'
 import { ProfilePage } from '@/features/profile/pages/ProfilePage'
+import { NotificationsPage } from '@/features/notifications/pages/NotificationsPage'
+import { SettingsPage } from '@/features/settings/pages/SettingsPage'
+import { SupportPage } from '@/features/support/pages/SupportPage'
 import type { RouteDefinition } from './types'
 import { PortfolioDetailPage } from '@/features/portfolio/pages/PortfolioDetailPage'
 
@@ -66,6 +69,24 @@ export const userRoutes: RouteDefinition[] = [
     id: 'user-profile',
     path: '/user/profile',
     element: ProfilePage,
+    requiredRole: 'user',
+  },
+  {
+    id: 'user-notifications',
+    path: '/user/notifications',
+    element: NotificationsPage,
+    requiredRole: 'user',
+  },
+  {
+    id: 'user-settings',
+    path: '/user/settings',
+    element: SettingsPage,
+    requiredRole: 'user',
+  },
+  {
+    id: 'user-support',
+    path: '/user/support',
+    element: SupportPage,
     requiredRole: 'user',
   },
 ]

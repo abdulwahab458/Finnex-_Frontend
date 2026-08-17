@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import  { useRef, useState } from "react";
 import { Controller, useFormContext, type FieldValues } from "react-hook-form";
 import { UploadCloud } from "lucide-react";
 import { FormFieldWrapper } from "./FormFieldWrapper";
@@ -53,12 +53,19 @@ export function FormFileUpload<TFieldValues extends FieldValues = FieldValues>({
         control={control}
         rules={rules}
         render={({ field }) => {
-          const files: FileList | File[] | undefined = field.value;
-          const fileNames = files ? Array.from(files as FileList).map((f) => f.name) : [];
+          const value = field.value as FileList | File | File[] | undefined | null;
+          const list = value instanceof FileList
+            ? Array.from(value)
+            : Array.isArray(value)
+              ? value
+              : value
+                ? [value]
+                : [];
+          const fileNames = list.map((f) => f.name);
 
-          const setFiles = (list: FileList | null) => {
-            if (!list) return;
-            field.onChange(multiple ? list : list);
+          const setFiles = (input: FileList | null) => {
+            if (!input) return;
+            field.onChange(multiple ? input : (input[0] ?? null));
           };
 
           return (

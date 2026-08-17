@@ -1,6 +1,6 @@
 
 import { apiClient } from "@/api/axios";
-import type { AccountsResponse, CreateAccountPayload, UpdateAccountPayload } from "../types/accounts.type";
+import type { AccountsResponse, CreateAccountPayload} from "../types/accounts.type";
 
 
 export const getAccounts = async() : Promise<AccountsResponse> =>{

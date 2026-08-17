@@ -1,5 +1,5 @@
 
-import React, { useMemo } from "react";
+import  { useMemo } from "react";
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 import { Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";

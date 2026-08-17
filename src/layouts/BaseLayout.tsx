@@ -56,6 +56,14 @@ I'm here to help you with anything related to your finances. Ask me about your *
 
 How can I help you today?`}
           placeholder="Ask me anything about your finances..."
+          rateLimitOptions={{
+            autoRetry: false,
+          }}
+          labels={{
+            rateLimitError:
+              "You've reached your daily AI message limit of 15. Please try again tomorrow.",
+          }}
+          
         />
 
         <Footer />

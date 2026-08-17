@@ -4,7 +4,6 @@ import { AppRoutes } from '@/routes/AppRoutes'
 import { useLocation } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { ChatWidget } from '@joseantonionuevo/ai-chat-widget';
 
 
 function App() {

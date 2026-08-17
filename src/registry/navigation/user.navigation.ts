@@ -3,10 +3,8 @@ import {
   Wallet,
   ArrowLeftRight,
   PiggyBank,
-  Target,
   BarChart3,
   FileText,
-  UserCircle,
 } from 'lucide-react'
 import type { NavigationItem } from './types'
 
@@ -48,5 +46,4 @@ export const userNavigation: NavigationItem[] = [
     icon: FileText,
     path: '/reports',
   },
-  
 ]

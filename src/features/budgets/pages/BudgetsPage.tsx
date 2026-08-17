@@ -57,14 +57,13 @@ const periodOptions = [
 export function BudgetsPage() {
   const navigate = useNavigate();
 
-  const { budgets, isLoading } = useBudgets();
+  const { budgets} = useBudgets();
   const { createBudget, isCreatePending } = useCreateBudget();
   const { updateBudget, isUpdatePending } = useUpdateBudget();
   const { deleteBudget, isDeletePending } = useDeleteBudget();
 
   const { goals, useGoalsLoading } = useGoals();
   const visibleGoals = (goals ?? []).slice(0, GOALS_PREVIEW_COUNT);
-  const hasMoreGoals = (goals?.length ?? 0) > GOALS_PREVIEW_COUNT;
 
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(false);

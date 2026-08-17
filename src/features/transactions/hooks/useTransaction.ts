@@ -2,7 +2,7 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createTransaction, deleteTransaction, downloadTransactionAttachment, getTransactions, getTransactionSummary, updateTransaction } from "../api/transactionApi";
-import type { CreateTransactionPayload } from "../types/transactions.type";
+import type { CreateTransactionPayload, TransactionFormValues } from "../types/transactions.type";
 import { toast } from "react-toastify";
 import type { AxiosError } from "axios";
 
@@ -55,7 +55,7 @@ export const useTransactionSummary = () => {
 export const useCreateTransaction = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: (payload: CreateTransactionPayload) => createTransaction(payload),
+    mutationFn: (payload: TransactionFormValues) => createTransaction(payload),
     onSuccess: () => {
       toast.success("Account created successfully.");
 
